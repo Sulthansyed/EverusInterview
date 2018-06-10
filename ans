@@ -1,0 +1,29 @@
+
+Please explain approaches when confronted with challenges from multi-modal data storage system for use cases.
+
+The challenges in using Multi-modal databases 
+1. Collection of data and storing,
+2. Labelling of data,
+3. Processing of data
+
+Collection of data and storing,
+ As we are going to the digital age collection and storing of data shouldnt be much cost making, so we should choose kind of data lightweight and store in commodity hardware, for example using document type data is confronted
+The databases should be easily expandable depends on the need
+
+Labelling of data,
+
+
+Processing of data
+
+
+Please explain the impetus of each, its difference and similarity between MapReduce, Spark and CUDA programming.
+
+Mapreduce
+Its good for linear processing of huge data sets, they are economical when no immediate result is needed, use more of disk than ram
+spark
+fast data processing use in-memory processing 100 times faster than mapreduce, near real-time processing, use more Ram 
+cuda
+Higher end system needed as it use GPU for processing, process which involves high arithmetic intensity can use CUDA programming , More used for Machine Learning and Deep learning problems
+
+All the three uses the concept of parallel computing
+
