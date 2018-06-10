@@ -7,7 +7,7 @@ Step 2. Select substring from names, from first letter to fourth.
 Query	: …………………………………………………………………………
 Output	: …………………………………………………………………………
 
-Ans: The answer has been attached in Ans.txt
+Ans: The answer has been attached in hiveAns.txt
 
 Question 2
 What command should you try if DBMS_OUTPUT.PUT_LINE is not doing what it is supposed to do?
