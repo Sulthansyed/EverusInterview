@@ -1,0 +1,57 @@
+ADD JAR json-serde-1.3.8-jar-with-dependencies.jar
+
+DROP TABLE if exists griddev.excercise;
+CREATE TABLE griddev.excercise
+(
+id int, 
+name string, 
+email_preference struct< email_format:string,frequency:string,categories:struct<promos:boolean,surveys:boolean> > , 
+addresses struct<shipping:struct<street_1:string,street_2:string,city:string,state:string,zip_code:string>,billing:struct<street_1:string,street_2:string,city:string,state:string,zip_code:string>>, 
+orders struct<order_id:string,order_date:string,items:struct<product_id:string,sku:string,name:string,price:string,qty:string>> 
+)
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+with SERDEPROPERTIES ( "ignore.malformed.json" = "true")
+tblproperties('skip.header.line.count'='1');
+
+load data local inpath '/home/gridappdev/sulthan/query-hive.csv' into table griddev.excercise;
+
+select substr(a.name,1,4) from griddev.excercise as a where limit 5;
+
+OK
+Doro
+Mart
+Melv
+Raym
+Bett
+Time taken: 5.195 seconds, Fetched: 5 row(s)
+
+DROP TABLE griddev.excercise1;
+CREATE TABLE griddev.excercise(
+id int, 
+name string, 
+email_preference struct< email_format:string,frequency:string,categories:struct<promos:boolean,surveys:boolean> > , 
+addresses struct<shipping:struct<street_1:string,street_2:string,city:string,state:string,zip_code:string>,billing:struct<street_1:string,street_2:string,city:string,state:string,zip_code:string>>, 
+orders struct<order_id:string,order_date:string,items:struct<product_id:string,sku:string,name:string,price:string,qty:string>> 
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe' COMMENT 'Using because the file has json data'
+tblproperties('skip.header.line.count'='1');
+
+load data local inpath '/home/gridappdev/sulthan/query-hive.csv' into table griddev.excercise1;
+
+75012,Dorothy Wilk,"{""email_format"":""html"",""frequency"":""weekly"",""categories"":{""promos"":true,""surveys"":false}}","{""shipping"":{""street_1"":""1102 Sussex Court"",""street_2"":"""",""city"":""Waco"",""state"":""TX"",""zip_code"":""76710""},""billing"":{""street_1"":""1102 Sussex Court"",""street_2"":"""",""city"":""Waco"",""state"":""TX"",""zip_code"":""76710""}}","
+
+
+
+[{""order_id"":""4056711"",""order_date"":""2015-05-01T14:22:25-04:00"",""items"":[{""product_id"":4056711,""sku"":""G034-531-4"",""name"":""Evening Clutch"",""price"":779.0,""qty"":1},{""product_id"":4064017,""sku"":""P557-219-2"",""name"":""Large Tassel Pouch"",""price"":139.0,""qty"":1}]},{""order_id"":""J882C2"",""order_date"":""2015-06-10T11:00:00-05:00"",""items"":[{""product_id"":3269083,""sku"":""K836-971-4"",""name"":""Flameless Candle"",""price"":48.0,""qty"":2}]}]"
+
+Time taken: 33.595 seconds, Fetched: 1 row(s)
+
+select substr(a.name,1,4) from griddev.excercise1 as a where limit 5;
+
+OK
+Doro
+Mart
+Melv
+Raym
+Bett
+Time taken: 5.195 seconds, Fetched: 5 row(s)
